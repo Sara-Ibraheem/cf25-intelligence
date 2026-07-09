@@ -1,5 +1,5 @@
 <!doctype html>
-<script type="application/json" id="cowork-artifact-meta">{"name":"Cf25 News Agent","schemaVersion":1,"description":"CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. Master template with Lora masthead, lead-story card and 2-column grid. 32 stories."}</script>
+<script type="application/json" id="cowork-artifact-meta">{"name":"Cf25 News Agent","schemaVersion":1}</script>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -125,9 +125,126 @@ footer strong{color:var(--muted)}
   .lead-headline{font-size:19px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none !important}}
+
+/* ── AUTH GATE ──────────────────────────────────── */
+#gate {
+  position: fixed;
+  inset: 0;
+  background: var(--deep);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.gate-card {
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+.gate-eye {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--teal2);
+  margin-bottom: 12px;
+}
+.gate-title {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.gate-sub {
+  font-size: 12.5px;
+  color: rgba(255,255,255,.32);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.gate-rule {
+  height: 1px;
+  background: rgba(255,255,255,.08);
+  margin-bottom: 32px;
+}
+.gate-input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 9px;
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: .08em;
+  outline: none;
+  transition: border-color .15s, background .15s;
+  margin-bottom: 8px;
+}
+.gate-input:focus {
+  border-color: var(--teal);
+  background: rgba(255,255,255,.09);
+}
+.gate-input::placeholder {
+  color: rgba(255,255,255,.2);
+  letter-spacing: 0;
+}
+.gate-error {
+  font-size: 12px;
+  color: #f87171;
+  margin-bottom: 10px;
+  min-height: 18px;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.gate-error.show { opacity: 1; }
+.gate-btn {
+  width: 100%;
+  padding: 13px;
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: background .12s, transform .1s;
+}
+.gate-btn:hover { background: var(--teal2); }
+.gate-btn:active { transform: scale(.98); }
+@keyframes gateFadeOut {
+  to { opacity: 0; pointer-events: none; }
+}
+@keyframes gateShake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-10px); }
+  60%      { transform: translateX(10px); }
+  80%      { transform: translateX(-5px); }
+}
+.gate-fade { animation: gateFadeOut .35s ease forwards; }
+.gate-shake { animation: gateShake .35s ease; }
 </style>
 </head>
 <body>
+
+
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-eye">CF25 Framework &middot; Intelligence</div>
+    <div class="gate-title">CF25 Intelligence</div>
+    <p class="gate-sub">UK construction &amp; education sector briefing<br>restricted access</p>
+    <div class="gate-rule"></div>
+    <input type="password" id="gateInput" class="gate-input"
+           placeholder="Access code" autocomplete="current-password" spellcheck="false">
+    <div class="gate-error" id="gateError">Incorrect access code — try again</div>
+    <button class="gate-btn" id="gateBtn">Enter</button>
+  </div>
+</div>
 
 <header class="masthead">
   <div class="mast-inner">
@@ -137,7 +254,7 @@ footer strong{color:var(--muted)}
     </div>
     <div class="mast-right">
       <span class="mast-pill" id="edDate">9 Jul 2026</span>
-      <span class="mast-tally" id="edTally">32 stories tracked</span>
+      <span class="mast-tally" id="edTally">29 stories tracked</span>
     </div>
   </div>
   <div class="mast-tagline">DfE · CF25 · SRP · RAAC · MMC — filtered for a main contractor on the framework</div>
@@ -153,7 +270,7 @@ footer strong{color:var(--muted)}
       <input class="search-input" id="searchInput" type="search" placeholder="Search stories…" autocomplete="off">
     </div>
     <div class="filters" id="filters">
-      <span class="chip active" data-topic="all">All <span class="chip-n" id="n-all">32</span></span>
+      <span class="chip active" data-topic="all">All <span class="chip-n" id="n-all">29</span></span>
       <span class="chip" data-topic="dfe">DfE / SRP / CF25 <span class="chip-n" id="n-dfe">-</span></span>
       <span class="chip" data-topic="raac">RAAC <span class="chip-n" id="n-raac">-</span></span>
       <span class="chip" data-topic="mmc">MMC / Net-zero <span class="chip-n" id="n-mmc">-</span></span>
@@ -173,14 +290,47 @@ footer strong{color:var(--muted)}
 </footer>
 
 <script>
+/* ── AUTH GATE ── */
+(function(){
+  var K='cf25-synapse', P='Synapse.CF25';
+  function unlock(){
+    var g=document.getElementById('gate');
+    g.classList.add('gate-fade');
+    setTimeout(function(){g.style.display='none'},350);
+  }
+  if(localStorage.getItem(K)===P){
+    document.addEventListener('DOMContentLoaded',unlock);
+    return;
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var inp=document.getElementById('gateInput');
+    var btn=document.getElementById('gateBtn');
+    var err=document.getElementById('gateError');
+    var card=document.querySelector('.gate-card');
+    inp.focus();
+    function attempt(){
+      if(inp.value===P){
+        localStorage.setItem(K,P);
+        unlock();
+      } else {
+        err.classList.add('show');
+        card.classList.remove('gate-shake');
+        void card.offsetWidth;
+        card.classList.add('gate-shake');
+        inp.value='';
+        inp.focus();
+      }
+    }
+    btn.addEventListener('click',attempt);
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter')attempt()});
+  });
+})();
+
 const NEWS = [
   { id:"dfe-capital-cut-defence-314m-2026-07-09", date:"2026-07-09", title:"DfE capital budget cut by £314m to fund UK Defence Investment Plan", summary:"Cross-government directive confirmed: DfE must contribute 1% of its £31.4bn capital allocation — £314m — to the UK's £15bn Defence Investment Plan over 2025–30. The reduction falls on capital normally used for school maintenance, Condition Improvement Fund, and High-needs Capital Allocations. Direct signal for SRP and CF25 call-off cadence: watch for programme slippage or reprioritisation of which schools enter the pipeline through 2029.", source:"GOV.UK / HM Treasury", sourceType:"gov", url:"https://www.gov.uk/government/organisations/department-for-education", topics:["dfe","raac"] },
   { id:"dfe-july-2026-policy-package", date:"2026-07-08", title:"DfE July 2026 package: £1.8bn school funding, 3.5% teacher pay, SEND overhaul, energy deadline", summary:"DfE 8 July update: £700m additional school funding for 2026–27 (rising to £1,115m in 2027–28) to cover a 3.5% teacher pay award from September 2026 plus 3% in 2027. Five new Regional Care Cooperatives launch to curb private SEND profiteering. Inter-authority SEND recoupment regulations take effect 1 September 2026. Deadline: academies and LAs must register for DfE Energy for Schools by 15 September 2026 to secure discounted utility contracts.", source:"GOV.UK DfE Update 8 July 2026", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-8-july-2026/dfe-update-academies-8-july-2026", topics:["dfe"] },
-  { id:"willmott-dixon-tops-education-workload-bramhall-2026-07-06", date:"2026-07-06", title:"Willmott Dixon tops education workload; £15.1m Bramhall High RAAC rebuild starts this summer", summary:"Willmott Dixon won the most UK education work in the 12 months to end-May 2026 and starts a £15.1m rebuild of RAAC-hit Bramhall High, Manchester this summer within a £182m order book. A read on which CF25 major is converting the most schools volume — a benchmark for competitor capacity and RAAC delivery.", source:"Emilecon Insights", sourceType:"trade", url:"https://www.emilecon.com/post/schools-in-2026-who-is-actually-building-what-in-the-uk", topics:["industry","raac","dfe"] },
-  { id:"st-leonards-durham-first-raac-rebuild-complete-2026-07-04", date:"2026-07-04", title:"Pupils return to England's first fully rebuilt RAAC school (St Leonard's, Durham)", summary:"BAM has completed the £71m rebuild of St Leonard's Catholic School, Durham — the first major RAAC-affected school fully replaced, with 1,300+ pupils moved back out of temporary accommodation. A live benchmark for RAAC rebuild scope, cost and programme as the CF25/SRP pipeline ramps.", source:"Premier Construction News", sourceType:"trade", url:"https://premierconstructionnews.com/2026/07/04/durham-pupils-return-to-englands-first-rebuilt-raac-school/", topics:["raac","industry"] },
   { id:"education-construction-recovery-glenigan-2026-07-02", date:"2026-07-02", title:"Education construction leads the recovery, says Glenigan", summary:"Glenigan forecasts education construction to grow 8% in 2026 and 20% in 2027, with underlying starts near £7bn next year — driven by the School Rebuilding Programme, FE funding and RAAC remediation. Note the parallel £9.5bn CPC Construction &amp; Capital Works framework (45 lots) that started 1 July — a competing route to education work alongside CF25.", source:"Specification Online / Glenigan", sourceType:"trade", url:"https://specificationonline.co.uk/articles/2026-07-02/glenigan/education-construction-projects-leads-the-recovery", topics:["industry","dfe"] },
   { id:"cma-12-firms-school-roofing-2026-07-01", date:"2026-07-01", title:"CMA names 12 firms in school roofing bid-rigging probe", summary:"The CMA has publicly named twelve companies suspected of bid-rigging on roofing and other construction services supplied to schools eligible for DfE's Condition Improvement Fund, with evidence-gathering running to at least December 2026. A live compliance and supply-chain read for CF25 teams — worth checking sub-contractor exposure and tightening bid-conduct governance.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/07/01/cma-names-12-firms-under-investigation-in-roofing-bid-rigging-probe/", topics:["industry","dfe"] },
-  { id:"dfe-update-las-1-jul-2026", date:"2026-07-01", title:"DfE Update for local authorities — 1 July 2026", summary:"DfE bulletin confirms over £2.1bn for school-estate condition in 2026-27 on top of continued School Rebuilding Programme and RAAC funding, and flags a new Renewal &amp; Retrofit Programme. A fresh capital route worth tracking alongside CF25 call-offs.", source:"GOV.UK", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-1-july-2026/dfe-update-local-authorities-1-july-2026", topics:["dfe"] },
   { id:"dfe-next-wave-srp-250-schools-2026-06-25", date:"2026-06-25", title:"Next wave of ~250 school rebuild projects to be selected later this year", summary:"DfE confirms the next tranche of c.250 schools for the School Rebuilding Programme will be chosen by year-end and announced early in the new year, feeding the £20bn SRP pipeline to 2034–35. The forward order book CF25 firms should be positioning bids and capacity for now.", source:"Construction News", sourceType:"trade", url:"https://www.constructionnews.co.uk/buildings/building-safety/next-wave-of-school-rebuild-projects-to-be-selected-later-this-year-25-06-2026/", topics:["dfe","raac"] },
   { id:"pdr-temporary-schools-consultation-2026-06-10", date:"2026-06-10", title:"Government consults on extending permitted development rights for temporary school buildings", summary:"GOV.UK consultation (10 Jun–5 Aug 2026) on extending the PDR for temporary school buildings beyond its 24 Oct 2026 expiry, since not all RAAC remediation will finish in time. Signals sustained demand for fast interim/modular accommodation on RAAC and SRP sites — relevant to CF25 delivery planning.", source:"GOV.UK", sourceType:"gov", url:"https://www.gov.uk/government/consultations/permitted-development-rights-schools-assets-of-community-value-defence-and-conservation/permitted-development-rights-schools-assets-of-community-value-defence-and-conservation", topics:["raac","mmc","dfe"] },
   { id:"balfour-beatty-83m-forres-academy-2026-06-09", date:"2026-06-09", title:"Balfour Beatty awarded £83m Forres Academy, Moray", summary:"Balfour Beatty wins the new Forres Academy via Hub North Scotland for Moray Council — a competitor capacity signal across the UK education estate beyond England's SRP.", source:"Construction News", sourceType:"trade", url:"https://www.constructionnews.co.uk/", topics:["industry"] },
