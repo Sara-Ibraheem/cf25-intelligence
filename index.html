@@ -1,0 +1,344 @@
+<!doctype html>
+<script type="application/json" id="cowork-artifact-meta">{"name":"Cf25 News Agent","schemaVersion":1,"description":"CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. Master template with Lora masthead, lead-story card and 2-column grid. 32 stories."}</script>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CF25 Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:        #002740;
+  --teal:        #008FA8;
+  --teal2:       #00b4d8;
+  --page:        #f0f2f5;
+  --card:        #ffffff;
+  --border:      #dde2e8;
+  --border-lt:   #eaedf1;
+  --ink:         #0d1b26;
+  --ink-mid:     #2d3f50;
+  --muted:       #5f7387;
+  --light:       #97aab8;
+  --dfe:         #1558b0;  --dfe-bg:      #e8f0fb;
+  --raac:        #b91c1c;  --raac-bg:     #fdf2f2;
+  --mmc:         #0d6633;  --mmc-bg:      #edf7f1;
+  --industry:    #6d28d9;  --industry-bg: #f4f1fd;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--page);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+/* ── MASTHEAD ───────────────────────────────────── */
+.masthead{background:var(--deep)}
+.mast-inner{max-width:880px;margin:0 auto;padding:22px 24px 16px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+.mast-kicker{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal2);margin-bottom:8px}
+.mast-title{font-size:30px;font-weight:700;letter-spacing:-.03em;color:#fff;line-height:1}
+.mast-right{text-align:right;flex-shrink:0}
+.mast-pill{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.82);font-size:11.5px;font-weight:600;padding:4px 12px;border-radius:999px;letter-spacing:.01em}
+.mast-tally{display:block;margin-top:5px;font-size:11px;color:rgba(255,255,255,.32)}
+.mast-tagline{max-width:880px;margin:0 auto;padding:9px 24px 14px;font-size:11.5px;color:rgba(255,255,255,.32);border-top:1px solid rgba(255,255,255,.07)}
+.mast-rule{height:3px;background:var(--teal)}
+
+/* ── TOOLBAR ────────────────────────────────────── */
+.toolbar{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20}
+.toolbar-inner{max-width:880px;margin:0 auto;padding:11px 24px 10px;display:flex;flex-direction:column;gap:9px}
+.search-wrap{position:relative}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--light);pointer-events:none}
+.search-input{width:100%;padding:8px 10px 8px 31px;border:1px solid var(--border);border-radius:7px;font-family:inherit;font-size:13.5px;color:var(--ink);background:var(--page);outline:none;transition:border-color .15s,background .15s}
+.search-input:focus{border-color:var(--teal);background:#fff}
+.search-input::placeholder{color:var(--light)}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:5px;border:1.5px solid var(--border);background:transparent;color:var(--muted);padding:4px 11px 4px 12px;border-radius:999px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .12s;white-space:nowrap;user-select:none}
+.chip:hover{border-color:var(--teal);color:#003f5a}
+.chip.active{background:var(--deep);border-color:var(--deep);color:#fff}
+.chip-n{font-size:10.5px;font-weight:700;padding:1px 5px;border-radius:999px;background:var(--page);color:var(--light);min-width:18px;text-align:center}
+.chip.active .chip-n{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8)}
+
+/* ── MAIN ───────────────────────────────────────── */
+.main{max-width:880px;margin:0 auto;padding:20px 24px 64px}
+.count-bar{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:14px;min-height:18px}
+.count-bar strong{color:var(--ink);font-weight:600}
+
+/* ── LEAD CARD ──────────────────────────────────── */
+.lead-card{display:flex;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px;transition:box-shadow .12s}
+.lead-card:hover{box-shadow:0 4px 18px rgba(0,30,50,.08)}
+.lead-strip{width:5px;flex-shrink:0}
+.lead-strip.dfe{background:var(--dfe)}
+.lead-strip.raac{background:var(--raac)}
+.lead-strip.mmc{background:var(--mmc)}
+.lead-strip.industry{background:var(--industry)}
+.lead-body{padding:22px 26px;flex:1}
+.lead-kicker{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.lead-badge{display:inline-block;background:var(--teal);color:#fff;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px}
+.lead-cat{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.lead-cat.dfe{color:var(--dfe)}.lead-cat.raac{color:var(--raac)}.lead-cat.mmc{color:var(--mmc)}.lead-cat.industry{color:var(--industry)}
+.lead-headline{font:700 22px/1.35 'Lora',Georgia,serif;letter-spacing:-.02em;margin-bottom:10px}
+.lead-headline a{color:var(--ink);text-decoration:none}
+.lead-headline a:hover{color:#003f5a;text-decoration:underline;text-underline-offset:4px}
+.lead-summary{font-size:13.5px;color:var(--ink-mid);line-height:1.6;margin-bottom:14px}
+.lead-foot{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding-top:12px;border-top:1px solid var(--border-lt)}
+.lead-src{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--light)}
+.lead-src.gov{color:#1558b0}.lead-src.contractor{color:#0d7a6a}
+.lead-date{font-size:11.5px;color:var(--light);margin-left:auto}
+.lead-tags{display:flex;gap:4px}
+
+/* ── SECTION DIVIDER (inside grid — spans both cols) ── */
+.section-div{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:16px 0 4px}
+.section-label{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.section-rule{flex:1;height:1px;background:var(--border)}
+
+/* ── GRID ───────────────────────────────────────── */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+
+/* ── STORY CARDS ────────────────────────────────── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .12s,box-shadow .12s}
+.card:hover{border-color:#c4cdd6;box-shadow:0 2px 10px rgba(0,30,50,.06)}
+.card-topbar{height:3px;flex-shrink:0}
+.card-topbar.dfe{background:var(--dfe)}.card-topbar.raac{background:var(--raac)}.card-topbar.mmc{background:var(--mmc)}.card-topbar.industry{background:var(--industry)}
+.card-body{padding:13px 15px;flex:1;display:flex;flex-direction:column}
+.card-kicker{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.card-kicker.dfe{color:var(--dfe)}.card-kicker.raac{color:var(--raac)}.card-kicker.mmc{color:var(--mmc)}.card-kicker.industry{color:var(--industry)}
+.card-title{font:600 14.5px/1.4 'Lora',Georgia,serif;letter-spacing:-.01em;margin-bottom:7px;flex:1}
+.card-title a{color:var(--ink);text-decoration:none}
+.card-title a:hover{color:#003f5a;text-decoration:underline;text-underline-offset:3px}
+.card-summary{font-size:12.5px;color:var(--ink-mid);line-height:1.55;margin-bottom:10px}
+.card-foot{margin-top:auto;padding-top:8px;border-top:1px solid var(--border-lt);display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.card-src{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--light)}
+.card-src.gov{color:#1558b0}.card-src.contractor{color:#0d7a6a}
+.card-date{font-size:11px;color:var(--light);font-variant-numeric:tabular-nums;margin-left:auto}
+.tags{display:flex;gap:3px}
+.tag{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 6px;border-radius:3px}
+.tag.dfe{background:var(--dfe-bg);color:var(--dfe)}.tag.raac{background:var(--raac-bg);color:var(--raac)}.tag.mmc{background:var(--mmc-bg);color:var(--mmc)}.tag.industry{background:var(--industry-bg);color:var(--industry)}
+
+/* ── EMPTY / FOOTER ─────────────────────────────── */
+.empty{grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);font-size:13.5px}
+.empty strong{display:block;font-size:15px;color:var(--ink-mid);margin-bottom:4px}
+footer{max-width:880px;margin:0 auto;padding:20px 24px 40px;border-top:1px solid var(--border-lt);font-size:11.5px;color:var(--light);text-align:center;line-height:1.75}
+footer strong{color:var(--muted)}
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media(max-width:640px){
+  .story-grid{grid-template-columns:1fr}
+  .mast-inner{flex-direction:column;align-items:flex-start}
+  .mast-right{text-align:left}
+  .lead-headline{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="mast-inner">
+    <div>
+      <div class="mast-kicker">CF25 Framework · UK Construction Intelligence</div>
+      <div class="mast-title">CF25 Intelligence</div>
+    </div>
+    <div class="mast-right">
+      <span class="mast-pill" id="edDate">9 Jul 2026</span>
+      <span class="mast-tally" id="edTally">32 stories tracked</span>
+    </div>
+  </div>
+  <div class="mast-tagline">DfE · CF25 · SRP · RAAC · MMC — filtered for a main contractor on the framework</div>
+  <div class="mast-rule"></div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <circle cx="8.5" cy="8.5" r="5.5"/><line x1="13" y1="13" x2="17" y2="17" stroke-linecap="round"/>
+      </svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search stories…" autocomplete="off">
+    </div>
+    <div class="filters" id="filters">
+      <span class="chip active" data-topic="all">All <span class="chip-n" id="n-all">32</span></span>
+      <span class="chip" data-topic="dfe">DfE / SRP / CF25 <span class="chip-n" id="n-dfe">-</span></span>
+      <span class="chip" data-topic="raac">RAAC <span class="chip-n" id="n-raac">-</span></span>
+      <span class="chip" data-topic="mmc">MMC / Net-zero <span class="chip-n" id="n-mmc">-</span></span>
+      <span class="chip" data-topic="industry">Industry / Competitors <span class="chip-n" id="n-industry">-</span></span>
+    </div>
+  </div>
+</div>
+
+<main class="main">
+  <div class="count-bar" id="countBar"></div>
+  <div id="leadWrap"></div>
+  <div class="story-grid" id="list"></div>
+</main>
+
+<footer>
+  <strong>CF25 Intelligence</strong> · Data current as of 9 July 2026 · Refreshed automatically each weekday
+</footer>
+
+<script>
+const NEWS = [
+  { id:"dfe-capital-cut-defence-314m-2026-07-09", date:"2026-07-09", title:"DfE capital budget cut by £314m to fund UK Defence Investment Plan", summary:"Cross-government directive confirmed: DfE must contribute 1% of its £31.4bn capital allocation — £314m — to the UK's £15bn Defence Investment Plan over 2025–30. The reduction falls on capital normally used for school maintenance, Condition Improvement Fund, and High-needs Capital Allocations. Direct signal for SRP and CF25 call-off cadence: watch for programme slippage or reprioritisation of which schools enter the pipeline through 2029.", source:"GOV.UK / HM Treasury", sourceType:"gov", url:"https://www.gov.uk/government/organisations/department-for-education", topics:["dfe","raac"] },
+  { id:"dfe-july-2026-policy-package", date:"2026-07-08", title:"DfE July 2026 package: £1.8bn school funding, 3.5% teacher pay, SEND overhaul, energy deadline", summary:"DfE 8 July update: £700m additional school funding for 2026–27 (rising to £1,115m in 2027–28) to cover a 3.5% teacher pay award from September 2026 plus 3% in 2027. Five new Regional Care Cooperatives launch to curb private SEND profiteering. Inter-authority SEND recoupment regulations take effect 1 September 2026. Deadline: academies and LAs must register for DfE Energy for Schools by 15 September 2026 to secure discounted utility contracts.", source:"GOV.UK DfE Update 8 July 2026", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-8-july-2026/dfe-update-academies-8-july-2026", topics:["dfe"] },
+  { id:"willmott-dixon-tops-education-workload-bramhall-2026-07-06", date:"2026-07-06", title:"Willmott Dixon tops education workload; £15.1m Bramhall High RAAC rebuild starts this summer", summary:"Willmott Dixon won the most UK education work in the 12 months to end-May 2026 and starts a £15.1m rebuild of RAAC-hit Bramhall High, Manchester this summer within a £182m order book. A read on which CF25 major is converting the most schools volume — a benchmark for competitor capacity and RAAC delivery.", source:"Emilecon Insights", sourceType:"trade", url:"https://www.emilecon.com/post/schools-in-2026-who-is-actually-building-what-in-the-uk", topics:["industry","raac","dfe"] },
+  { id:"st-leonards-durham-first-raac-rebuild-complete-2026-07-04", date:"2026-07-04", title:"Pupils return to England's first fully rebuilt RAAC school (St Leonard's, Durham)", summary:"BAM has completed the £71m rebuild of St Leonard's Catholic School, Durham — the first major RAAC-affected school fully replaced, with 1,300+ pupils moved back out of temporary accommodation. A live benchmark for RAAC rebuild scope, cost and programme as the CF25/SRP pipeline ramps.", source:"Premier Construction News", sourceType:"trade", url:"https://premierconstructionnews.com/2026/07/04/durham-pupils-return-to-englands-first-rebuilt-raac-school/", topics:["raac","industry"] },
+  { id:"education-construction-recovery-glenigan-2026-07-02", date:"2026-07-02", title:"Education construction leads the recovery, says Glenigan", summary:"Glenigan forecasts education construction to grow 8% in 2026 and 20% in 2027, with underlying starts near £7bn next year — driven by the School Rebuilding Programme, FE funding and RAAC remediation. Note the parallel £9.5bn CPC Construction &amp; Capital Works framework (45 lots) that started 1 July — a competing route to education work alongside CF25.", source:"Specification Online / Glenigan", sourceType:"trade", url:"https://specificationonline.co.uk/articles/2026-07-02/glenigan/education-construction-projects-leads-the-recovery", topics:["industry","dfe"] },
+  { id:"cma-12-firms-school-roofing-2026-07-01", date:"2026-07-01", title:"CMA names 12 firms in school roofing bid-rigging probe", summary:"The CMA has publicly named twelve companies suspected of bid-rigging on roofing and other construction services supplied to schools eligible for DfE's Condition Improvement Fund, with evidence-gathering running to at least December 2026. A live compliance and supply-chain read for CF25 teams — worth checking sub-contractor exposure and tightening bid-conduct governance.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/07/01/cma-names-12-firms-under-investigation-in-roofing-bid-rigging-probe/", topics:["industry","dfe"] },
+  { id:"dfe-update-las-1-jul-2026", date:"2026-07-01", title:"DfE Update for local authorities — 1 July 2026", summary:"DfE bulletin confirms over £2.1bn for school-estate condition in 2026-27 on top of continued School Rebuilding Programme and RAAC funding, and flags a new Renewal &amp; Retrofit Programme. A fresh capital route worth tracking alongside CF25 call-offs.", source:"GOV.UK", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-1-july-2026/dfe-update-local-authorities-1-july-2026", topics:["dfe"] },
+  { id:"dfe-next-wave-srp-250-schools-2026-06-25", date:"2026-06-25", title:"Next wave of ~250 school rebuild projects to be selected later this year", summary:"DfE confirms the next tranche of c.250 schools for the School Rebuilding Programme will be chosen by year-end and announced early in the new year, feeding the £20bn SRP pipeline to 2034–35. The forward order book CF25 firms should be positioning bids and capacity for now.", source:"Construction News", sourceType:"trade", url:"https://www.constructionnews.co.uk/buildings/building-safety/next-wave-of-school-rebuild-projects-to-be-selected-later-this-year-25-06-2026/", topics:["dfe","raac"] },
+  { id:"pdr-temporary-schools-consultation-2026-06-10", date:"2026-06-10", title:"Government consults on extending permitted development rights for temporary school buildings", summary:"GOV.UK consultation (10 Jun–5 Aug 2026) on extending the PDR for temporary school buildings beyond its 24 Oct 2026 expiry, since not all RAAC remediation will finish in time. Signals sustained demand for fast interim/modular accommodation on RAAC and SRP sites — relevant to CF25 delivery planning.", source:"GOV.UK", sourceType:"gov", url:"https://www.gov.uk/government/consultations/permitted-development-rights-schools-assets-of-community-value-defence-and-conservation/permitted-development-rights-schools-assets-of-community-value-defence-and-conservation", topics:["raac","mmc","dfe"] },
+  { id:"balfour-beatty-83m-forres-academy-2026-06-09", date:"2026-06-09", title:"Balfour Beatty awarded £83m Forres Academy, Moray", summary:"Balfour Beatty wins the new Forres Academy via Hub North Scotland for Moray Council — a competitor capacity signal across the UK education estate beyond England's SRP.", source:"Construction News", sourceType:"trade", url:"https://www.constructionnews.co.uk/", topics:["industry"] },
+  { id:"mace-tops-may-contracts-league-2026-06-09", date:"2026-06-09", title:"Mace tops May contracts league", summary:"Monthly league-table intel: useful for benchmarking competitor win-rates and where major players are converting work; cross-reference against SRP/CF25 call-off activity.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/", topics:["industry"] },
+  { id:"galliford-try-39m-gidea-park-send-2026-06-09", date:"2026-06-09", title:"Galliford Try lands £39m East London SEND school (Gidea Park)", summary:"Main works greenlit for one of the UK's largest specialist schools. A CF25-appointed firm winning a major SEND scheme — a strong read on where DfE volume and competitor focus are heading.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/", topics:["dfe","mmc"] },
+  { id:"tilbury-douglas-1-6bn-order-book-2026-06-08", date:"2026-06-08", title:"Tilbury Douglas reshuffles regional building team as order book hits £1.6bn", summary:"Competitor restructuring for growth. Tilbury Douglas (already on a St Thomas C.E. Primary SRP rebuild) is positioning to bid harder on CF25 low-value lots.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/", topics:["industry"] },
+  { id:"morgan-sindall-29m-villiers-high-2026-06-05", date:"2026-06-05", title:"Morgan Sindall lands £29.3m Villiers High redevelopment, Ealing", summary:"Sustainability-led London school win. Benchmark competitor delivery and net-zero approach — directly relevant to CF25 quality/MEAT scoring.", source:"Construction News", sourceType:"trade", url:"https://www.constructionnews.co.uk/", topics:["industry","mmc"] },
+  { id:"powys-46m-market-engagement-2026-06-04", date:"2026-06-04", title:"Powys Council launches £46m school project market engagement", summary:"Early-stage opportunity. Engage now to help shape scope ahead of formal procurement; useful for low-value-lot positioning in Wales/border regions.", source:"Construction News", sourceType:"trade", url:"https://www.constructionnews.co.uk/", topics:["dfe"] },
+  { id:"dfe-update-las-3-jun-2026", date:"2026-06-03", title:"DfE Update for local authorities — 3 June 2026", summary:"Latest DfE bulletin to local authorities on school estate funding and assurance. No new build awards, but a read on where client-side capital decisions are forming.", source:"GOV.UK", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-3-june/dfe-update-local-authorities-3-june-2026", topics:["dfe"] },
+  { id:"funding-boost-v-levels-2026-05-20", date:"2026-05-20", title:"Funding boost for construction V Levels", summary:"Skills-pipeline move relevant to CF25 social-value and apprenticeship commitments — worth folding into bid narratives on workforce development.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/05/20/funding-boost-for-construction-v-levels/", topics:["industry"] },
+  { id:"dfe-automated-feasibility-tool-2026-05-13", date:"2026-05-13", title:"DfE plans automated feasibility-testing tool for £15.4bn school-building agenda", summary:"DfE building digital tooling to triage feasibility across the CF25 pipeline — a signal on how schemes will be scoped and prioritised before they reach contractors.", source:"PublicTechnology", sourceType:"trade", url:"https://www.publictechnology.net/2026/05/13/education-and-skills/dfe-plans-automated-feasibility-testing-tool-for-15-4bn-school-building-agenda/", topics:["dfe"] },
+  { id:"dfe-243m-rebuild-wave-2026-04-20", date:"2026-04-20", title:"DfE unleashes £243m school rebuild wave for main works", summary:"Nine schemes cleared to start on site — Bowmer &amp; Kirkland £147m (two secondaries), Galliford Try £42m (three primaries), Morgan Sindall £31m, REDS10 £22.5m. The live order pipeline to benchmark against.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/04/20/dfe-unleashes-243m-school-rebuild-wave-for-main-works/", topics:["dfe"] },
+  { id:"willmott-dixon-61m-mosslands-2026-04-14", date:"2026-04-14", title:"Willmott Dixon secures £61m DfE contract to rebuild The Mosslands School, Wallasey", summary:"A sizeable SRP rebuild award to a CF25 firm — useful comparator for North-West call-off pricing and delivery scope.", source:"Willmott Dixon", sourceType:"contractor", url:"https://www.willmottdixon.co.uk/news/willmott-dixon-secures-61m-dfe-contract-to-rebuild-the-mosslands-school-in-wallasey", topics:["dfe"] },
+  { id:"dfe-picks-four-schools-2026-03-09", date:"2026-03-09", title:"DfE picks contractors for four schools jobs", summary:"Early CF25-era call-offs landing. Track which firms are taking which regional lots to read competitor lot-loading.", source:"Construction News", sourceType:"trade", url:"https://www.constructionnews.co.uk/contracts/dfe-picks-contractors-for-four-schools-jobs-09-03-2026/", topics:["dfe"] },
+  { id:"dfe-appoints-23-firms-cf25-2026-02-19", date:"2026-02-19", title:"DfE appoints 23 firms to £15.4bn CF25 schools framework", summary:"The CF25 appointment list confirmed across 10 regional lots and two value bands — the competitive set you are bidding within for the next six years.", source:"Industrialised Construction", sourceType:"trade", url:"https://www.industrialisedconstruction.co.uk/2026/02/19/dfe-appoints-23-firms-to-15-4bn-cf25-schools-framework/", topics:["dfe"] },
+  { id:"raac-chronic-investment-deficit-2026-02-11", date:"2026-02-11", title:"Schools RAAC crisis result of 'chronic investment deficit', MPs say", summary:"Public Accounts scrutiny keeps RAAC remediation politically live — supports the case for sustained SRP and grant-funded workflow through to 2029.", source:"Construction News", sourceType:"trade", url:"https://www.constructionnews.co.uk/cn-intelligence/sector/education/schools-raac-crisis-result-of-chronic-investment-deficit-mps-say-11-02-2026/", topics:["raac"] },
+  { id:"school-building-apprentice-guarantees-2026-02-10", date:"2026-02-10", title:"School building winners to give apprentice guarantees", summary:"CF25 winners committing to apprenticeship guarantees — a social-value benchmark to match or beat in call-off competitions.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/02/10/school-building-winners-to-give-apprentice-guarantees/", topics:["dfe","industry"] },
+  { id:"bouygues-sues-dfe-2026-02-06", date:"2026-02-06", title:"Bouygues sues DfE over mega schools framework award", summary:"Bouygues challenges its CF25 exclusion (edged out by 0.13% on Lot 2, South high-value). A set-aside could force re-evaluation and stall South call-offs — the key legal watch item.", source:"Contract Journal", sourceType:"trade", url:"https://www.contractjournal.co.uk/bouygues-sues-dfe-over-mega-schools-framework-award/", topics:["dfe"] },
+  { id:"kier-derbyshire-double-school-2026-02-02", date:"2026-02-02", title:"Kier set to start Derbyshire double school job", summary:"Competitor mobilisation on a twin-school scheme — a read on Kier's regional capacity as CF25 call-offs ramp.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/02/02/kier-set-to-start-derbyshire-double-school-job/", topics:["dfe","industry"] },
+  { id:"free-school-axed-3bn-send-2025-12-12", date:"2025-12-12", title:"Free school build plans axed to fund £3bn SEND expansion", summary:"28 mainstream free schools scrapped (16 under review) as £3bn is diverted into 50,000 SEND places — confirming SEND/specialist as the growth lane under CF25/SRP.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2025/12/12/free-school-building-plans-axed-as-3bn-send-expansion-takes-priority/", topics:["dfe"] },
+  { id:"dfe-confirms-six-school-contracts-2025-12-10", date:"2025-12-10", title:"DfE confirms six new school construction contracts", summary:"A batch of pre-CF25 awards closing out — context for the transition from CF21 to CF25 delivery.", source:"Industrialised Construction", sourceType:"trade", url:"https://www.industrialisedconstruction.co.uk/2025/12/10/dfe-confirms-six-new-school-construction-contracts/", topics:["dfe"] },
+  { id:"dfe-names-23-winners-2025-12-08", date:"2025-12-08", title:"DfE names 23 winners for £15bn schools framework refresh", summary:"First confirmation of the CF25 winning line-up — the moment the competitive landscape for the framework was set.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2025/12/08/dfe-names-23-winners-for-15bn-schools-framework-refresh/", topics:["dfe"] },
+  { id:"dfe-clears-270m-schools-2025-11-03", date:"2025-11-03", title:"DfE greenlights £270m of school and college builds", summary:"A pipeline clearance into construction — useful baseline for the scale and cadence of DfE programme releases.", source:"BDC Magazine", sourceType:"trade", url:"https://bdcmagazine.com/2025/11/dfe-clears-270m-programme-of-school-and-college-projects-for-construction/", topics:["dfe"] },
+  { id:"raac-2029-deadline-2025-10-28", date:"2025-10-28", title:"Government sets 2029 deadline to strip RAAC from all schools", summary:"Firm deadline anchors the RAAC remediation workload — the bulk of ~123 SRP rebuilds and ~108 grant schemes is still to flow. Track regional release waves for call-off timing.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2025/10/28/government-sets-2028-deadline-to-strip-raac-from-all-schools/", topics:["raac"] },
+  { id:"dfe-35m-temporary-buildings-raac-2025-09-15", date:"2025-09-15", title:"DfE to pay £35m on contracts for temporary school buildings", summary:"Spend on temporary accommodation underlines the disruption RAAC is causing — and the demand for fast, modular interim provision.", source:"Tes", sourceType:"trade", url:"https://www.tes.com/magazine/news/general/government-pay-millions-temporary-school-buildings-raac", topics:["raac","mmc"] }
+];
+
+/* ── state ── */
+let activeTopic='all', query='';
+try{activeTopic=localStorage.getItem('cf25-topic')||'all'}catch(e){}
+
+/* ── chip counts ── */
+['all','dfe','raac','mmc','industry'].forEach(t=>{
+  const n=t==='all'?NEWS.length:NEWS.filter(s=>s.topics.includes(t)).length;
+  const el=document.getElementById('n-'+t);
+  if(el)el.textContent=n;
+});
+document.getElementById('edDate').textContent='9 Jul 2026';
+document.getElementById('edTally').textContent=NEWS.length+' stories tracked';
+
+/* ── helpers ── */
+const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function fmt(iso){const d=new Date(iso+'T00:00:00');return d.getDate()+' '+M[d.getMonth()]+' '+d.getFullYear()}
+function pri(topics){
+  if(topics.includes('raac'))return'raac';
+  if(topics.includes('dfe'))return'dfe';
+  if(topics.includes('mmc'))return'mmc';
+  return topics[0]||'industry';
+}
+const TLABEL={dfe:'DfE / SRP / CF25',raac:'RAAC & Condition',mmc:'MMC / Net-zero',industry:'Industry / Competitors'};
+const TSHORT={dfe:'DfE/SRP',raac:'RAAC',mmc:'MMC',industry:'Industry'};
+
+function tags(topics){return topics.map(t=>`<span class="tag ${t}">${TSHORT[t]||t}</span>`).join('')}
+
+function renderLead(n){
+  const p=pri(n.topics);
+  return`<article class="lead-card">
+    <div class="lead-strip ${p}"></div>
+    <div class="lead-body">
+      <div class="lead-kicker">
+        <span class="lead-badge">Lead Story</span>
+        <span class="lead-cat ${p}">${TLABEL[p]}</span>
+      </div>
+      <h2 class="lead-headline"><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a></h2>
+      <p class="lead-summary">${n.summary}</p>
+      <div class="lead-foot">
+        <span class="lead-src ${n.sourceType}">${n.source}</span>
+        <span class="lead-date">${fmt(n.date)}</span>
+        <span class="lead-tags">${tags(n.topics)}</span>
+      </div>
+    </div>
+  </article>`
+}
+
+function renderCard(n){
+  const p=pri(n.topics);
+  return`<article class="card">
+    <div class="card-topbar ${p}"></div>
+    <div class="card-body">
+      <div class="card-kicker ${p}">${TLABEL[p]}</div>
+      <h3 class="card-title"><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a></h3>
+      <p class="card-summary">${n.summary}</p>
+      <div class="card-foot">
+        <span class="card-src ${n.sourceType}">${n.source}</span>
+        <span class="card-date">${fmt(n.date)}</span>
+        <span class="tags">${tags(n.topics)}</span>
+      </div>
+    </div>
+  </article>`
+}
+
+function secDiv(label){
+  return`<div class="section-div"><span class="section-label">${label}</span><span class="section-rule"></span></div>`
+}
+
+/* ── render ── */
+function render(){
+  const q=query.trim().toLowerCase();
+  const all=NEWS
+    .filter(n=>activeTopic==='all'||n.topics.includes(activeTopic))
+    .filter(n=>!q||n.title.toLowerCase().includes(q)||n.summary.toLowerCase().includes(q))
+    .sort((a,b)=>b.date.localeCompare(a.date));
+
+  const cb=document.getElementById('countBar');
+  cb.innerHTML=q?`<strong>${all.length}</strong> result${all.length!==1?'s':''} for &ldquo;${query.trim()}&rdquo;`
+               :`<strong>${all.length}</strong> ${all.length!==1?'stories':'story'}`;
+
+  const leadWrap=document.getElementById('leadWrap');
+  const list=document.getElementById('list');
+
+  if(!all.length){
+    leadWrap.innerHTML='';
+    list.innerHTML='<div class="empty"><strong>No stories found</strong>Try a different filter or clear your search.</div>';
+    return;
+  }
+
+  const[lead,...rest]=all;
+  leadWrap.innerHTML=renderLead(lead);
+
+  const useGroups=activeTopic==='all'&&!q;
+  if(!useGroups||!rest.length){
+    list.innerHTML=rest.map(renderCard).join('');
+    return;
+  }
+
+  /* grouped by topic with section dividers */
+  const seen=new Set([lead.id]);
+  const SECTIONS=[
+    {key:'dfe',     label:'DfE / SRP / CF25'},
+    {key:'raac',    label:'RAAC & School Condition'},
+    {key:'mmc',     label:'MMC & Net-zero'},
+    {key:'industry',label:'Industry & Competitors'},
+  ];
+  let html='';
+  SECTIONS.forEach(s=>{
+    const items=all.filter(n=>n.topics.includes(s.key)&&!seen.has(n.id));
+    if(!items.length)return;
+    html+=secDiv(s.label);
+    items.forEach(n=>{seen.add(n.id);html+=renderCard(n)});
+  });
+  all.filter(n=>!seen.has(n.id)).forEach(n=>{html+=renderCard(n)});
+  list.innerHTML=html;
+}
+
+/* ── events ── */
+document.getElementById('filters').addEventListener('click',e=>{
+  const chip=e.target.closest('[data-topic]');
+  if(!chip)return;
+  activeTopic=chip.dataset.topic;
+  try{localStorage.setItem('cf25-topic',activeTopic)}catch(e){}
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active',c.dataset.topic===activeTopic));
+  render();
+});
+document.getElementById('searchInput').addEventListener('input',e=>{query=e.target.value;render()});
+
+/* ── init ── */
+document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active',c.dataset.topic===activeTopic));
+render();
+</script>
+</body>
+</html>
