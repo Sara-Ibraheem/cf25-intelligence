@@ -253,7 +253,7 @@ footer strong{color:var(--muted)}
       <div class="mast-title">CF25 Intelligence</div>
     </div>
     <div class="mast-right">
-      <span class="mast-pill" id="edDate">9 Jul 2026</span>
+      <span class="mast-pill" id="edDate">14 Jul 2026</span>
       <span class="mast-tally" id="edTally">29 stories tracked</span>
     </div>
   </div>
@@ -286,7 +286,7 @@ footer strong{color:var(--muted)}
 </main>
 
 <footer>
-  <strong>CF25 Intelligence</strong> · Data current as of 9 July 2026 · Refreshed automatically each weekday
+  <strong>CF25 Intelligence</strong> · Data current as of 14 July 2026 · Refreshed automatically each weekday
 </footer>
 
 <script>
@@ -327,6 +327,8 @@ footer strong{color:var(--muted)}
 })();
 
 const NEWS = [
+  { id:"dfe-send-funding-shakeup-2026-07-10", date:"2026-07-10", title:"DfE consults on major SEND funding shake-up — higher school threshold, more upfront cash", summary:"DfE consultation (10 Jul–18 Sep 2026) proposes giving councils power to increase the notional SEND budget schools must spend before seeking top-up funding — currently capped at £6,000 per pupil since 2014. Schools get more upfront cash but carry higher baseline SEND costs. CF25 angle: confirms SEND/specialist as the growth lane — more inclusion demand in mainstream schools drives the case for adaptable school buildings and specialist spaces within CF25 new-build schemes.", source:"Tes / DfE", sourceType:"gov", url:"https://www.tes.com/magazine/news/general/plans-major-shake-schools-send-funding", topics:["dfe","mmc"] },
+  { id:"higgins-47m-avonmore-school-flats-2026-07-08", date:"2026-07-08", title:"Higgins wins £47m Avonmore Primary rebuild, Hammersmith — school funded by 91 homes", summary:"Higgins Partnerships appointed by Hammersmith &amp; Fulham Council to deliver a £47m mixed-use school rebuild: 2,297sqm of learning space across three levels including rooftop provision, alongside 91 mixed-tenure homes. Competitor intel — Higgins taking education work via council partnership routes outside CF25; mixed-use funding model (homes cross-subsidy) increasingly viable for urban school sites where land values support it.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/07/08/higgins-wins-47m-school-and-flats-scheme/", topics:["industry","mmc"] },
   { id:"dfe-capital-cut-defence-314m-2026-07-09", date:"2026-07-09", title:"DfE capital budget cut by £314m to fund UK Defence Investment Plan", summary:"Cross-government directive confirmed: DfE must contribute 1% of its £31.4bn capital allocation — £314m — to the UK's £15bn Defence Investment Plan over 2025–30. The reduction falls on capital normally used for school maintenance, Condition Improvement Fund, and High-needs Capital Allocations. Direct signal for SRP and CF25 call-off cadence: watch for programme slippage or reprioritisation of which schools enter the pipeline through 2029.", source:"GOV.UK / HM Treasury", sourceType:"gov", url:"https://www.gov.uk/government/organisations/department-for-education", topics:["dfe","raac"] },
   { id:"dfe-july-2026-policy-package", date:"2026-07-08", title:"DfE July 2026 package: £1.8bn school funding, 3.5% teacher pay, SEND overhaul, energy deadline", summary:"DfE 8 July update: £700m additional school funding for 2026–27 (rising to £1,115m in 2027–28) to cover a 3.5% teacher pay award from September 2026 plus 3% in 2027. Five new Regional Care Cooperatives launch to curb private SEND profiteering. Inter-authority SEND recoupment regulations take effect 1 September 2026. Deadline: academies and LAs must register for DfE Energy for Schools by 15 September 2026 to secure discounted utility contracts.", source:"GOV.UK DfE Update 8 July 2026", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-8-july-2026/dfe-update-academies-8-july-2026", topics:["dfe"] },
   { id:"education-construction-recovery-glenigan-2026-07-02", date:"2026-07-02", title:"Education construction leads the recovery, says Glenigan", summary:"Glenigan forecasts education construction to grow 8% in 2026 and 20% in 2027, with underlying starts near £7bn next year — driven by the School Rebuilding Programme, FE funding and RAAC remediation. Note the parallel £9.5bn CPC Construction &amp; Capital Works framework (45 lots) that started 1 July — a competing route to education work alongside CF25.", source:"Specification Online / Glenigan", sourceType:"trade", url:"https://specificationonline.co.uk/articles/2026-07-02/glenigan/education-construction-projects-leads-the-recovery", topics:["industry","dfe"] },
@@ -368,7 +370,7 @@ try{activeTopic=localStorage.getItem('cf25-topic')||'all'}catch(e){}
   const el=document.getElementById('n-'+t);
   if(el)el.textContent=n;
 });
-document.getElementById('edDate').textContent='9 Jul 2026';
+document.getElementById('edDate').textContent='14 Jul 2026';
 document.getElementById('edTally').textContent=NEWS.length+' stories tracked';
 
 /* ── helpers ── */
