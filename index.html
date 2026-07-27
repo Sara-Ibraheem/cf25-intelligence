@@ -2,7 +2,7 @@
 {
   "name": "Cf25 News Agent",
   "schemaVersion": 1,
-  "description": "CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. Lora masthead, full-width lead-story card, 2-column grid, topic filters, search, localStorage. 37 stories, edition 27 Jul 2026."
+  "description": "CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. Lora masthead, full-width lead-story card, 2-column grid, topic filters, search, localStorage. 38 stories, edition 27 Jul 2026."
 }
 </script>
 <html lang="en">
@@ -142,7 +142,7 @@ footer strong{color:var(--muted)}
     </div>
     <div class="mast-right">
       <span class="mast-pill" id="edDate">27 Jul 2026</span>
-      <span class="mast-tally" id="edTally">37 stories tracked</span>
+      <span class="mast-tally" id="edTally">38 stories tracked</span>
     </div>
   </div>
   <div class="mast-tagline">DfE · CF25 · SRP · RAAC · MMC — filtered for a main contractor on the framework</div>
@@ -158,7 +158,7 @@ footer strong{color:var(--muted)}
       <input class="search-input" id="searchInput" type="search" placeholder="Search stories…" autocomplete="off">
     </div>
     <div class="filters" id="filters">
-      <span class="chip active" data-topic="all">All <span class="chip-n" id="n-all">37</span></span>
+      <span class="chip active" data-topic="all">All <span class="chip-n" id="n-all">38</span></span>
       <span class="chip" data-topic="dfe">DfE / SRP / CF25 <span class="chip-n" id="n-dfe">-</span></span>
       <span class="chip" data-topic="raac">RAAC <span class="chip-n" id="n-raac">-</span></span>
       <span class="chip" data-topic="mmc">MMC / Net-zero <span class="chip-n" id="n-mmc">-</span></span>
@@ -179,6 +179,7 @@ footer strong{color:var(--muted)}
 
 <script>
 const NEWS = [
+  { id:"kier-98m-wellfield-anglo-european-genzero-raac-2026-07-27", date:"2026-07-27", title:"Kier lands £98m double school award — Wellfield Academy (GenZero pathfinder) and RAAC-hit Anglo European", summary:"Kier — a CF25 high-value lot holder — is appointed main contractor on two schemes worth ~£98m: the £45m Wellfield Academy, Leyland, one of the DfE's five flagship GenZero ultra-low-carbon pathfinder schools (CLT frame, ground-source heat pumps, PV, natural ventilation; completion end-2028), and the £53m net-zero-in-operation replacement of RAAC-hit Anglo European School, Ingatestone (sixth-form centre closed 2023). A key competitor-capacity and design read for CF25 teams: the GenZero build will help set the low-carbon standard call-off bids are scored against, and reconfirms RAAC replacement plus net-zero delivery as the live workstream.", source:"BDC Magazine", sourceType:"trade", url:"https://bdcmagazine.com/2026/07/kier-secures-98m-school-rebuild-contracts-to-deliver-next-generation-of-sustainable-campuses/", topics:["dfe","mmc","raac","industry"] },
   { id:"dfe-update-22-jul-2026", date:"2026-07-22", title:"DfE Update 22 July 2026: apprenticeship funding rules v2, subcontracting deadline, Skills Bootcamp age change", summary:"Latest DfE bulletin is skills/FE-focused: v2 apprenticeship funding rules for 2026–27 (co-investment changes) apply to starts from 1 Aug 2026; final reminder to upload 2025–26 subcontracting standard files by 31 Aug 2026; Skills Bootcamp eligibility now opens from a learner's 19th birthday. Limited direct capital read for CF25, but relevant to the apprenticeship and social-value commitments carried in call-off bids.", source:"GOV.UK DfE Update 22 July 2026", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-22-july-2026/dfe-update-local-authorities-22-july-2026", topics:["dfe","industry"] },
   { id:"willmott-dixon-118m-garendon-primary-leicestershire-2026-07-21", date:"2026-07-21", title:"Willmott Dixon starts £11.8m Garendon Primary School for Leicestershire County Council", summary:"Willmott Dixon has begun an £11.8m, 420-place primary in west Loughborough, built to a repeatable 'proven model' design with a 300m² rooftop PV array; completion due July 2027. A read on how a CF25 major is converting local-authority school volume off-SRP — and on the standardised, low-carbon design approach clients increasingly expect in call-off bids.", source:"Willmott Dixon", sourceType:"contractor", url:"https://www.willmottdixon.co.uk/news/willmott-dixon-starts-118m-garendon-primary-school-for-leicestershire-county-council", topics:["industry","mmc"] },
   { id:"morgan-sindall-13m-kingsbrook-aylesbury-topping-out-2026-07-17", date:"2026-07-17", title:"Morgan Sindall tops out £13m Kingsbrook School extension, Aylesbury", summary:"Morgan Sindall marked topping out on a £13m, three-storey 360-place secondary extension in Aylesbury — all-electric with air-source heat pumps and rooftop PV, gas retained only for science labs; completion November 2026. A competitor delivery and net-zero benchmark directly relevant to CF25 quality/MEAT scoring on low-carbon design.", source:"Construction UK Magazine", sourceType:"trade", url:"https://constructionmaguk.co.uk/morgan-sindall-celebrates-topping-out-at-the-kingsbrook-school-in-aylesbury/", topics:["industry","mmc"] },
