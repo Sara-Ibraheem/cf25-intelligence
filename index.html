@@ -1,5 +1,10 @@
-<!doctype html>
-<script type="application/json" id="cowork-artifact-meta">{"name":"Cf25 News Agent","schemaVersion":1}</script>
+<!doctype html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Cf25 News Agent",
+  "schemaVersion": 1,
+  "description": "CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. Lora masthead, full-width lead-story card, 2-column grid, topic filters, search, localStorage. 37 stories, edition 27 Jul 2026."
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -125,126 +130,9 @@ footer strong{color:var(--muted)}
   .lead-headline{font-size:19px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none !important}}
-
-/* ── AUTH GATE ──────────────────────────────────── */
-#gate {
-  position: fixed;
-  inset: 0;
-  background: var(--deep);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.gate-card {
-  width: 100%;
-  max-width: 360px;
-  text-align: center;
-}
-.gate-eye {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--teal2);
-  margin-bottom: 12px;
-}
-.gate-title {
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: -.03em;
-  color: #fff;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.gate-sub {
-  font-size: 12.5px;
-  color: rgba(255,255,255,.32);
-  margin-bottom: 32px;
-  line-height: 1.6;
-}
-.gate-rule {
-  height: 1px;
-  background: rgba(255,255,255,.08);
-  margin-bottom: 32px;
-}
-.gate-input {
-  width: 100%;
-  padding: 13px 16px;
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 9px;
-  background: rgba(255,255,255,.06);
-  color: #fff;
-  font-family: inherit;
-  font-size: 15px;
-  text-align: center;
-  letter-spacing: .08em;
-  outline: none;
-  transition: border-color .15s, background .15s;
-  margin-bottom: 8px;
-}
-.gate-input:focus {
-  border-color: var(--teal);
-  background: rgba(255,255,255,.09);
-}
-.gate-input::placeholder {
-  color: rgba(255,255,255,.2);
-  letter-spacing: 0;
-}
-.gate-error {
-  font-size: 12px;
-  color: #f87171;
-  margin-bottom: 10px;
-  min-height: 18px;
-  opacity: 0;
-  transition: opacity .2s;
-}
-.gate-error.show { opacity: 1; }
-.gate-btn {
-  width: 100%;
-  padding: 13px;
-  background: var(--teal);
-  color: #fff;
-  border: none;
-  border-radius: 9px;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: .04em;
-  cursor: pointer;
-  transition: background .12s, transform .1s;
-}
-.gate-btn:hover { background: var(--teal2); }
-.gate-btn:active { transform: scale(.98); }
-@keyframes gateFadeOut {
-  to { opacity: 0; pointer-events: none; }
-}
-@keyframes gateShake {
-  0%,100% { transform: translateX(0); }
-  20%      { transform: translateX(-10px); }
-  60%      { transform: translateX(10px); }
-  80%      { transform: translateX(-5px); }
-}
-.gate-fade { animation: gateFadeOut .35s ease forwards; }
-.gate-shake { animation: gateShake .35s ease; }
 </style>
 </head>
 <body>
-
-
-<div id="gate">
-  <div class="gate-card">
-    <div class="gate-eye">CF25 Framework &middot; Intelligence</div>
-    <div class="gate-title">CF25 Intelligence</div>
-    <p class="gate-sub">UK construction &amp; education sector briefing<br>restricted access</p>
-    <div class="gate-rule"></div>
-    <input type="password" id="gateInput" class="gate-input"
-           placeholder="Access code" autocomplete="current-password" spellcheck="false">
-    <div class="gate-error" id="gateError">Incorrect access code — try again</div>
-    <button class="gate-btn" id="gateBtn">Enter</button>
-  </div>
-</div>
 
 <header class="masthead">
   <div class="mast-inner">
@@ -253,8 +141,8 @@ footer strong{color:var(--muted)}
       <div class="mast-title">CF25 Intelligence</div>
     </div>
     <div class="mast-right">
-      <span class="mast-pill" id="edDate">23 Jul 2026</span>
-      <span class="mast-tally" id="edTally">41 stories tracked</span>
+      <span class="mast-pill" id="edDate">27 Jul 2026</span>
+      <span class="mast-tally" id="edTally">37 stories tracked</span>
     </div>
   </div>
   <div class="mast-tagline">DfE · CF25 · SRP · RAAC · MMC — filtered for a main contractor on the framework</div>
@@ -270,7 +158,7 @@ footer strong{color:var(--muted)}
       <input class="search-input" id="searchInput" type="search" placeholder="Search stories…" autocomplete="off">
     </div>
     <div class="filters" id="filters">
-      <span class="chip active" data-topic="all">All <span class="chip-n" id="n-all">41</span></span>
+      <span class="chip active" data-topic="all">All <span class="chip-n" id="n-all">37</span></span>
       <span class="chip" data-topic="dfe">DfE / SRP / CF25 <span class="chip-n" id="n-dfe">-</span></span>
       <span class="chip" data-topic="raac">RAAC <span class="chip-n" id="n-raac">-</span></span>
       <span class="chip" data-topic="mmc">MMC / Net-zero <span class="chip-n" id="n-mmc">-</span></span>
@@ -286,55 +174,18 @@ footer strong{color:var(--muted)}
 </main>
 
 <footer>
-  <strong>CF25 Intelligence</strong> · Data current as of 23 July 2026 · Refreshed automatically each weekday
+  <strong>CF25 Intelligence</strong> · Data current as of 27 July 2026 · Refreshed automatically each weekday
 </footer>
 
 <script>
-/* ── AUTH GATE ── */
-(function(){
-  var K='cf25-synapse', P='Synapse.CF25';
-  function unlock(){
-    var g=document.getElementById('gate');
-    g.classList.add('gate-fade');
-    setTimeout(function(){g.style.display='none'},350);
-  }
-  if(localStorage.getItem(K)===P){
-    document.addEventListener('DOMContentLoaded',unlock);
-    return;
-  }
-  document.addEventListener('DOMContentLoaded',function(){
-    var inp=document.getElementById('gateInput');
-    var btn=document.getElementById('gateBtn');
-    var err=document.getElementById('gateError');
-    var card=document.querySelector('.gate-card');
-    inp.focus();
-    function attempt(){
-      if(inp.value===P){
-        localStorage.setItem(K,P);
-        unlock();
-      } else {
-        err.classList.add('show');
-        card.classList.remove('gate-shake');
-        void card.offsetWidth;
-        card.classList.add('gate-shake');
-        inp.value='';
-        inp.focus();
-      }
-    }
-    btn.addEventListener('click',attempt);
-    inp.addEventListener('keydown',function(e){if(e.key==='Enter')attempt()});
-  });
-})();
-
 const NEWS = [
-  { id:"tilbury-douglas-balance-sheet-turnaround-cf25-awards-2026-07-22", date:"2026-07-22", title:"Tilbury Douglas completes balance-sheet turnaround and lands first CF25 direct awards for two secondary schools", summary:"Tilbury Douglas reports a completed balance-sheet turnaround and confirms it has retained its DfE place and secured a spot on the £15.4bn CF25 framework — with its first direct awards to deliver two new secondary schools. A competitor-capacity signal for CF25 teams: a framework rival is now financially stronger and actively converting its place into live call-offs.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/07/22/tilbury-douglas-completes-balance-sheet-turnaround/", topics:["industry","dfe"] },
+  { id:"dfe-update-22-jul-2026", date:"2026-07-22", title:"DfE Update 22 July 2026: apprenticeship funding rules v2, subcontracting deadline, Skills Bootcamp age change", summary:"Latest DfE bulletin is skills/FE-focused: v2 apprenticeship funding rules for 2026–27 (co-investment changes) apply to starts from 1 Aug 2026; final reminder to upload 2025–26 subcontracting standard files by 31 Aug 2026; Skills Bootcamp eligibility now opens from a learner's 19th birthday. Limited direct capital read for CF25, but relevant to the apprenticeship and social-value commitments carried in call-off bids.", source:"GOV.UK DfE Update 22 July 2026", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-22-july-2026/dfe-update-local-authorities-22-july-2026", topics:["dfe","industry"] },
   { id:"willmott-dixon-118m-garendon-primary-leicestershire-2026-07-21", date:"2026-07-21", title:"Willmott Dixon starts £11.8m Garendon Primary School for Leicestershire County Council", summary:"Willmott Dixon has begun an £11.8m, 420-place primary in west Loughborough, built to a repeatable 'proven model' design with a 300m² rooftop PV array; completion due July 2027. A read on how a CF25 major is converting local-authority school volume off-SRP — and on the standardised, low-carbon design approach clients increasingly expect in call-off bids.", source:"Willmott Dixon", sourceType:"contractor", url:"https://www.willmottdixon.co.uk/news/willmott-dixon-starts-118m-garendon-primary-school-for-leicestershire-county-council", topics:["industry","mmc"] },
   { id:"morgan-sindall-13m-kingsbrook-aylesbury-topping-out-2026-07-17", date:"2026-07-17", title:"Morgan Sindall tops out £13m Kingsbrook School extension, Aylesbury", summary:"Morgan Sindall marked topping out on a £13m, three-storey 360-place secondary extension in Aylesbury — all-electric with air-source heat pumps and rooftop PV, gas retained only for science labs; completion November 2026. A competitor delivery and net-zero benchmark directly relevant to CF25 quality/MEAT scoring on low-carbon design.", source:"Construction UK Magazine", sourceType:"trade", url:"https://constructionmaguk.co.uk/morgan-sindall-celebrates-topping-out-at-the-kingsbrook-school-in-aylesbury/", topics:["industry","mmc"] },
+  { id:"tilbury-douglas-balance-sheet-turnaround-cf25-awards-2026-07-22", date:"2026-07-22", title:"Tilbury Douglas completes balance-sheet turnaround and lands first CF25 direct awards for two secondary schools", summary:"Tilbury Douglas reports a completed balance-sheet turnaround and confirms it has retained its DfE place and secured a spot on the £15.4bn CF25 framework — with its first direct awards to deliver two new secondary schools. A competitor-capacity signal for CF25 teams: a framework rival is now financially stronger and actively converting its place into live call-offs.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/07/22/tilbury-douglas-completes-balance-sheet-turnaround/", topics:["industry","dfe"] },
   { id:"raac-remediation-next-workload-2026-07-15", date:"2026-07-15", title:"RAAC remediation flagged as the next major public-estate workload for 2026–27", summary:"Trade analysis frames RAAC removal as a multi-year pipeline: 71 schools and colleges permanently RAAC-free by Feb 2026, but the bulk of the ~£20bn School Rebuilding Programme (750+ schools to 2034–35) is still to flow. For CF25 teams it confirms RAAC rebuilds and temporary-accommodation demand as a durable workstream to resource against.", source:"Construction Magazine", sourceType:"trade", url:"https://www.constructionmagazine.uk/2026/07/raac-remediation-public-estate-workload-2026-27.html", topics:["raac","dfe"] },
-  { id:"dfe-send-funding-shakeup-2026-07-10", date:"2026-07-10", title:"DfE consults on major SEND funding shake-up — higher school threshold, more upfront cash", summary:"DfE consultation (10 Jul–18 Sep 2026) proposes giving councils power to increase the notional SEND budget schools must spend before seeking top-up funding — currently capped at £6,000 per pupil since 2014. Schools get more upfront cash but carry higher baseline SEND costs. CF25 angle: confirms SEND/specialist as the growth lane — more inclusion demand in mainstream schools drives the case for adaptable school buildings and specialist spaces within CF25 new-build schemes.", source:"Tes / DfE", sourceType:"gov", url:"https://www.tes.com/magazine/news/general/plans-major-shake-schools-send-funding", topics:["dfe","mmc"] },
   { id:"dfe-capital-cut-defence-314m-2026-07-09", date:"2026-07-09", title:"DfE capital budget cut by £314m to fund UK Defence Investment Plan", summary:"Cross-government directive confirmed: DfE must contribute 1% of its £31.4bn capital allocation — £314m — to the UK's £15bn Defence Investment Plan over 2025–30. The reduction falls on capital normally used for school maintenance, Condition Improvement Fund, and High-needs Capital Allocations. Direct signal for SRP and CF25 call-off cadence: watch for programme slippage or reprioritisation of which schools enter the pipeline through 2029.", source:"GOV.UK / HM Treasury", sourceType:"gov", url:"https://www.gov.uk/government/organisations/department-for-education", topics:["dfe","raac"] },
   { id:"dfe-july-2026-policy-package", date:"2026-07-08", title:"DfE July 2026 package: £1.8bn school funding, 3.5% teacher pay, SEND overhaul, energy deadline", summary:"DfE 8 July update: £700m additional school funding for 2026–27 (rising to £1,115m in 2027–28) to cover a 3.5% teacher pay award from September 2026 plus 3% in 2027. Five new Regional Care Cooperatives launch to curb private SEND profiteering. Inter-authority SEND recoupment regulations take effect 1 September 2026. Deadline: academies and LAs must register for DfE Energy for Schools by 15 September 2026 to secure discounted utility contracts.", source:"GOV.UK DfE Update 8 July 2026", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-8-july-2026/dfe-update-academies-8-july-2026", topics:["dfe"] },
-  { id:"higgins-47m-avonmore-school-flats-2026-07-08", date:"2026-07-08", title:"Higgins wins £47m Avonmore Primary rebuild, Hammersmith — school funded by 91 homes", summary:"Higgins Partnerships appointed by Hammersmith &amp; Fulham Council to deliver a £47m mixed-use school rebuild: 2,297sqm of learning space across three levels including rooftop provision, alongside 91 mixed-tenure homes. Competitor intel — Higgins taking education work via council partnership routes outside CF25; mixed-use funding model (homes cross-subsidy) increasingly viable for urban school sites where land values support it.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/07/08/higgins-wins-47m-school-and-flats-scheme/", topics:["industry","mmc"] },
   { id:"willmott-dixon-tops-education-workload-bramhall-2026-07-06", date:"2026-07-06", title:"Willmott Dixon tops education workload; £15.1m Bramhall High RAAC rebuild starts this summer", summary:"Willmott Dixon won the most UK education work in the 12 months to end-May 2026 and starts a £15.1m rebuild of RAAC-hit Bramhall High, Manchester this summer within a £182m order book. A read on which CF25 major is converting the most schools volume — a benchmark for competitor capacity and RAAC delivery.", source:"Emilecon Insights", sourceType:"trade", url:"https://www.emilecon.com/post/schools-in-2026-who-is-actually-building-what-in-the-uk", topics:["industry","raac","dfe"] },
   { id:"st-leonards-durham-first-raac-rebuild-complete-2026-07-04", date:"2026-07-04", title:"Pupils return to England's first fully rebuilt RAAC school (St Leonard's, Durham)", summary:"BAM has completed the £71m rebuild of St Leonard's Catholic School, Durham — the first major RAAC-affected school fully replaced, with 1,300+ pupils moved back out of temporary accommodation. A live benchmark for RAAC rebuild scope, cost and programme as the CF25/SRP pipeline ramps.", source:"Premier Construction News", sourceType:"trade", url:"https://premierconstructionnews.com/2026/07/04/durham-pupils-return-to-englands-first-rebuilt-raac-school/", topics:["raac","industry"] },
   { id:"education-construction-recovery-glenigan-2026-07-02", date:"2026-07-02", title:"Education construction leads the recovery, says Glenigan", summary:"Glenigan forecasts education construction to grow 8% in 2026 and 20% in 2027, with underlying starts near £7bn next year — driven by the School Rebuilding Programme, FE funding and RAAC remediation. Note the parallel £9.5bn CPC Construction &amp; Capital Works framework (45 lots) that started 1 July — a competing route to education work alongside CF25.", source:"Specification Online / Glenigan", sourceType:"trade", url:"https://specificationonline.co.uk/articles/2026-07-02/glenigan/education-construction-projects-leads-the-recovery", topics:["industry","dfe"] },
@@ -363,11 +214,8 @@ const NEWS = [
   { id:"bouygues-sues-dfe-2026-02-06", date:"2026-02-06", title:"Bouygues sues DfE over mega schools framework award", summary:"Bouygues challenges its CF25 exclusion (edged out by 0.13% on Lot 2, South high-value). A set-aside could force re-evaluation and stall South call-offs — the key legal watch item.", source:"Contract Journal", sourceType:"trade", url:"https://www.contractjournal.co.uk/bouygues-sues-dfe-over-mega-schools-framework-award/", topics:["dfe"] },
   { id:"kier-derbyshire-double-school-2026-02-02", date:"2026-02-02", title:"Kier set to start Derbyshire double school job", summary:"Competitor mobilisation on a twin-school scheme — a read on Kier's regional capacity as CF25 call-offs ramp.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/02/02/kier-set-to-start-derbyshire-double-school-job/", topics:["dfe","industry"] },
   { id:"free-school-axed-3bn-send-2025-12-12", date:"2025-12-12", title:"Free school build plans axed to fund £3bn SEND expansion", summary:"28 mainstream free schools scrapped (16 under review) as £3bn is diverted into 50,000 SEND places — confirming SEND/specialist as the growth lane under CF25/SRP.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2025/12/12/free-school-building-plans-axed-as-3bn-send-expansion-takes-priority/", topics:["dfe"] },
-  { id:"dfe-confirms-six-school-contracts-2025-12-10", date:"2025-12-10", title:"DfE confirms six new school construction contracts", summary:"A batch of pre-CF25 awards closing out — context for the transition from CF21 to CF25 delivery.", source:"Industrialised Construction", sourceType:"trade", url:"https://www.industrialisedconstruction.co.uk/2025/12/10/dfe-confirms-six-new-school-construction-contracts/", topics:["dfe"] },
   { id:"dfe-names-23-winners-2025-12-08", date:"2025-12-08", title:"DfE names 23 winners for £15bn schools framework refresh", summary:"First confirmation of the CF25 winning line-up — the moment the competitive landscape for the framework was set.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2025/12/08/dfe-names-23-winners-for-15bn-schools-framework-refresh/", topics:["dfe"] },
-  { id:"dfe-clears-270m-schools-2025-11-03", date:"2025-11-03", title:"DfE greenlights £270m of school and college builds", summary:"A pipeline clearance into construction — useful baseline for the scale and cadence of DfE programme releases.", source:"BDC Magazine", sourceType:"trade", url:"https://bdcmagazine.com/2025/11/dfe-clears-270m-programme-of-school-and-college-projects-for-construction/", topics:["dfe"] },
-  { id:"raac-2029-deadline-2025-10-28", date:"2025-10-28", title:"Government sets 2029 deadline to strip RAAC from all schools", summary:"Firm deadline anchors the RAAC remediation workload — the bulk of ~123 SRP rebuilds and ~108 grant schemes is still to flow. Track regional release waves for call-off timing.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2025/10/28/government-sets-2028-deadline-to-strip-raac-from-all-schools/", topics:["raac"] },
-  { id:"dfe-35m-temporary-buildings-raac-2025-09-15", date:"2025-09-15", title:"DfE to pay £35m on contracts for temporary school buildings", summary:"Spend on temporary accommodation underlines the disruption RAAC is causing — and the demand for fast, modular interim provision.", source:"Tes", sourceType:"trade", url:"https://www.tes.com/magazine/news/general/government-pay-millions-temporary-school-buildings-raac", topics:["raac","mmc"] }
+  { id:"raac-2029-deadline-2025-10-28", date:"2025-10-28", title:"Government sets 2029 deadline to strip RAAC from all schools", summary:"Firm deadline anchors the RAAC remediation workload — the bulk of ~123 SRP rebuilds and ~108 grant schemes is still to flow. Track regional release waves for call-off timing.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2025/10/28/government-sets-2028-deadline-to-strip-raac-from-all-schools/", topics:["raac"] }
 ];
 
 /* ── state ── */
@@ -380,7 +228,7 @@ try{activeTopic=localStorage.getItem('cf25-topic')||'all'}catch(e){}
   const el=document.getElementById('n-'+t);
   if(el)el.textContent=n;
 });
-document.getElementById('edDate').textContent='23 Jul 2026';
+document.getElementById('edDate').textContent='27 Jul 2026';
 document.getElementById('edTally').textContent=NEWS.length+' stories tracked';
 
 /* ── helpers ── */
