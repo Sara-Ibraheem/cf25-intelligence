@@ -2,7 +2,7 @@
 {
   "name": "Cf25 News Agent",
   "schemaVersion": 1,
-  "description": "CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. Lora masthead, full-width lead-story card, 2-column grid, topic filters, search, localStorage. 40 stories, edition 27 Jul 2026."
+  "description": "CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. Lora masthead, full-width lead-story card, 2-column grid, topic filters, search, localStorage. 40 stories, edition 28 Jul 2026."
 }
 </script>
 <html lang="en">
@@ -141,7 +141,7 @@ footer strong{color:var(--muted)}
       <div class="mast-title">CF25 Intelligence</div>
     </div>
     <div class="mast-right">
-      <span class="mast-pill" id="edDate">27 Jul 2026</span>
+      <span class="mast-pill" id="edDate">28 Jul 2026</span>
       <span class="mast-tally" id="edTally">40 stories tracked</span>
     </div>
   </div>
@@ -174,7 +174,7 @@ footer strong{color:var(--muted)}
 </main>
 
 <footer>
-  <strong>CF25 Intelligence</strong> · Data current as of 27 July 2026 · Refreshed automatically each weekday
+  <strong>CF25 Intelligence</strong> · Data current as of 28 July 2026 · Refreshed automatically each weekday
 </footer>
 
 <script>
@@ -231,7 +231,7 @@ try{activeTopic=localStorage.getItem('cf25-topic')||'all'}catch(e){}
   const el=document.getElementById('n-'+t);
   if(el)el.textContent=n;
 });
-document.getElementById('edDate').textContent='27 Jul 2026';
+document.getElementById('edDate').textContent='28 Jul 2026';
 document.getElementById('edTally').textContent=NEWS.length+' stories tracked';
 
 /* ── helpers ── */
