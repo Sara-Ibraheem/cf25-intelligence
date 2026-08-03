@@ -2,7 +2,7 @@
 {
   "name": "Cf25 News Agent",
   "schemaVersion": 1,
-  "description": "CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. Lora masthead, full-width lead-story card, 2-column grid, topic filters, search, localStorage. 30 stories, edition 31 Jul 2026."
+  "description": "CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. Lora masthead, full-width lead-story card, 2-column grid, topic filters, search, localStorage. 30 stories, edition 3 Aug 2026."
 }
 </script>
 <html lang="en">
@@ -141,7 +141,7 @@ footer strong{color:var(--muted)}
       <div class="mast-title">CF25 Intelligence</div>
     </div>
     <div class="mast-right">
-      <span class="mast-pill" id="edDate">31 Jul 2026</span>
+      <span class="mast-pill" id="edDate">3 Aug 2026</span>
       <span class="mast-tally" id="edTally">30 stories tracked</span>
     </div>
   </div>
@@ -174,11 +174,12 @@ footer strong{color:var(--muted)}
 </main>
 
 <footer>
-  <strong>CF25 Intelligence</strong> · Data current as of 31 July 2026 · Refreshed automatically each weekday
+  <strong>CF25 Intelligence</strong> · Data current as of 3 August 2026 · Refreshed automatically each weekday
 </footer>
 
 <script>
 const NEWS = [
+  { id:"thornhill-academy-sunderland-srp-rebuild-approval-2026-08-03", date:"2026-08-03", title:"Sunderland's Thornhill Academy SRP rebuild heads for planning decision", summary:"Sunderland City Council's planning and highways committee is due to rule on the School Rebuilding Programme-backed revamp of Thornhill Academy on 3 August, with officers recommending approval. The scheme would demolish part of the existing school and add a new three-storey teaching block, swimming pool, refurbished sports hall and upgraded outdoor facilities. A live North East SRP scheme moving through planning \u2014 a read on pipeline scope and the design/phasing standard for occupied-site secondary rebuilds CF25 teams will bid against.", source:"Sunderland Echo", sourceType:"trade", url:"https://www.sunderlandecho.com/education/decision-due-over-multi-million-pound-revamp-of-sunderland-school-8828852", topics:["dfe"] },
   { id:"six-week-summer-sprint-schools-srp-2026-07-16", date:"2026-07-16", title:"Summer 'six-week sprint' turns schools into live SRP construction sites", summary:"Trade feature on the summer-holiday delivery window — the only viable slot to complete high-impact refurbishment and new-build on occupied school estates, with 100+ schools becoming construction sites under the School Rebuilding Programme. A delivery-planning read for CF25 teams: compressed programmes, phasing and logistics on occupied campuses are where call-off margin and reputation are won or lost.", source:"Construction UK Magazine", sourceType:"trade", url:"https://constructionmaguk.co.uk/the-six-week-sprint-summer-holidays-become-a-construction-deadline-for-britains-schools/", topics:["industry","dfe"] },
   { id:"kier-98m-wellfield-anglo-european-genzero-raac-2026-07-27", date:"2026-07-27", title:"Kier lands £98m double school award — Wellfield Academy (GenZero pathfinder) and RAAC-hit Anglo European", summary:"Kier — a CF25 high-value lot holder — is appointed main contractor on two schemes worth ~£98m: the £45m Wellfield Academy, Leyland, one of the DfE's five flagship GenZero ultra-low-carbon pathfinder schools (CLT frame, ground-source heat pumps, PV, natural ventilation; completion end-2028), and the £53m net-zero-in-operation replacement of RAAC-hit Anglo European School, Ingatestone (sixth-form centre closed 2023). A key competitor-capacity and design read for CF25 teams: the GenZero build will help set the low-carbon standard call-off bids are scored against, and reconfirms RAAC replacement plus net-zero delivery as the live workstream.", source:"BDC Magazine", sourceType:"trade", url:"https://bdcmagazine.com/2026/07/kier-secures-98m-school-rebuild-contracts-to-deliver-next-generation-of-sustainable-campuses/", topics:["dfe","mmc","raac","industry"] },
   { id:"dfe-update-22-jul-2026", date:"2026-07-22", title:"DfE Update 22 July 2026: apprenticeship funding rules v2, subcontracting deadline, Skills Bootcamp age change", summary:"Latest DfE bulletin is skills/FE-focused: v2 apprenticeship funding rules for 2026–27 (co-investment changes) apply to starts from 1 Aug 2026; final reminder to upload 2025–26 subcontracting standard files by 31 Aug 2026; Skills Bootcamp eligibility now opens from a learner's 19th birthday. Limited direct capital read for CF25, but relevant to the apprenticeship and social-value commitments carried in call-off bids.", source:"GOV.UK DfE Update 22 July 2026", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-22-july-2026/dfe-update-local-authorities-22-july-2026", topics:["dfe","industry"] },
@@ -207,8 +208,7 @@ const NEWS = [
   { id:"funding-boost-v-levels-2026-05-20", date:"2026-05-20", title:"Funding boost for construction V Levels", summary:"Skills-pipeline move relevant to CF25 social-value and apprenticeship commitments — worth folding into bid narratives on workforce development.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/05/20/funding-boost-for-construction-v-levels/", topics:["industry"] },
   { id:"kier-60m-ellesmere-port-rebuild-2026-05-19", date:"2026-05-19", title:"Kier submits plans for £60m Ellesmere Port school rebuild", summary:"Kier — a CF25 high-value lot holder — has lodged plans for a £60m school rebuild at Ellesmere Port, a read on how quickly framework firms are converting appointments into live SRP schemes in the North West. A comparator for regional call-off scope and pace.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/05/19/kier-submits-plan-for-60m-ellesmere-port-school-rebuild/", topics:["dfe","industry"] },
   { id:"dfe-automated-feasibility-tool-2026-05-13", date:"2026-05-13", title:"DfE plans automated feasibility-testing tool for £15.4bn school-building agenda", summary:"DfE building digital tooling to triage feasibility across the CF25 pipeline — a signal on how schemes will be scoped and prioritised before they reach contractors.", source:"PublicTechnology", sourceType:"trade", url:"https://www.publictechnology.net/2026/05/13/education-and-skills/dfe-plans-automated-feasibility-testing-tool-for-15-4bn-school-building-agenda/", topics:["dfe"] },
-  { id:"dfe-bouygues-selective-case-2026-05-05", date:"2026-05-05", title:"DfE hits back at Bouygues' 'selective' case over £15.4bn CF25 framework", summary:"DfE has filed its defence against Bouygues' challenge to its CF25 exclusion (lost Lot 2 South by 0.13%), calling the case 'selective' and arguing it is out of time; Bouygues disputes both. The live legal risk on South high-value call-offs — a set-aside could still force re-evaluation and stall the pipeline.", source:"Construction News", sourceType:"trade", url:"https://www.constructionnews.co.uk/legal/dfe-hits-back-at-bouygues-selective-case-on-15-4bn-framework-05-05-2026/", topics:["dfe"] },
-  { id:"dfe-243m-rebuild-wave-2026-04-20", date:"2026-04-20", title:"DfE unleashes £243m school rebuild wave for main works", summary:"Nine schemes cleared to start on site — Bowmer &amp; Kirkland £147m (two secondaries), Galliford Try £42m (three primaries), Morgan Sindall £31m, REDS10 £22.5m. The live order pipeline to benchmark against.", source:"Construction Enquirer", sourceType:"trade", url:"https://www.constructionenquirer.com/2026/04/20/dfe-unleashes-243m-school-rebuild-wave-for-main-works/", topics:["dfe"] }
+  { id:"dfe-bouygues-selective-case-2026-05-05", date:"2026-05-05", title:"DfE hits back at Bouygues' 'selective' case over £15.4bn CF25 framework", summary:"DfE has filed its defence against Bouygues' challenge to its CF25 exclusion (lost Lot 2 South by 0.13%), calling the case 'selective' and arguing it is out of time; Bouygues disputes both. The live legal risk on South high-value call-offs — a set-aside could still force re-evaluation and stall the pipeline.", source:"Construction News", sourceType:"trade", url:"https://www.constructionnews.co.uk/legal/dfe-hits-back-at-bouygues-selective-case-on-15-4bn-framework-05-05-2026/", topics:["dfe"] }
 ];
 
 /* ── state ── */
@@ -221,7 +221,7 @@ try{activeTopic=localStorage.getItem('cf25-topic')||'all'}catch(e){}
   const el=document.getElementById('n-'+t);
   if(el)el.textContent=n;
 });
-document.getElementById('edDate').textContent='31 Jul 2026';
+document.getElementById('edDate').textContent='3 Aug 2026';
 document.getElementById('edTally').textContent=NEWS.length+' stories tracked';
 
 /* ── helpers ── */
