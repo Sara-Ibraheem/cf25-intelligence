@@ -2,7 +2,7 @@
 {
   "name": "Cf25 News Agent",
   "schemaVersion": 1,
-  "description": "CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. 32 stories, edition 7 Aug 2026."
+  "description": "CF25 Intelligence — newspaper-style UK construction & education news dashboard (DfE, CF25, SRP, RAAC, MMC) filtered for a main contractor on the CF25 framework. 33 stories, edition 10 Aug 2026."
 }
 </script>
 <html lang="en">
@@ -141,8 +141,8 @@ footer strong{color:var(--muted)}
       <div class="mast-title">CF25 Intelligence</div>
     </div>
     <div class="mast-right">
-      <span class="mast-pill" id="edDate">7 Aug 2026</span>
-      <span class="mast-tally" id="edTally">32 stories tracked</span>
+      <span class="mast-pill" id="edDate">10 Aug 2026</span>
+      <span class="mast-tally" id="edTally">33 stories tracked</span>
     </div>
   </div>
   <div class="mast-tagline">DfE · CF25 · SRP · RAAC · MMC — filtered for a main contractor on the framework</div>
@@ -158,7 +158,7 @@ footer strong{color:var(--muted)}
       <input class="search-input" id="searchInput" type="search" placeholder="Search stories…" autocomplete="off">
     </div>
     <div class="filters" id="filters">
-      <span class="chip active" data-topic="all">All <span class="chip-n" id="n-all">32</span></span>
+      <span class="chip active" data-topic="all">All <span class="chip-n" id="n-all">33</span></span>
       <span class="chip" data-topic="dfe">DfE / SRP / CF25 <span class="chip-n" id="n-dfe">-</span></span>
       <span class="chip" data-topic="raac">RAAC <span class="chip-n" id="n-raac">-</span></span>
       <span class="chip" data-topic="mmc">MMC / Net-zero <span class="chip-n" id="n-mmc">-</span></span>
@@ -174,11 +174,12 @@ footer strong{color:var(--muted)}
 </main>
 
 <footer>
-  <strong>CF25 Intelligence</strong> · Data current as of 7 August 2026 · Refreshed automatically each weekday
+  <strong>CF25 Intelligence</strong> · Data current as of 10 August 2026 · Refreshed automatically each weekday
 </footer>
 
 <script>
 const NEWS = [
+  { id:"pdr-temporary-schools-consultation-closed-2026-08-05", date:"2026-08-05", title:"Consultation on extending temporary-school PDR closes — outcome pending as 24 Oct expiry nears", summary:"The Government's consultation on extending permitted development rights for temporary school buildings — needed where RAAC remediation runs past the current 24 October 2026 PDR expiry — closed on 5 August, with MHCLG now analysing responses and no outcome yet published. For CF25 teams this keeps interim/modular accommodation demand live on RAAC and SRP sites, but leaves a planning-certainty gap on temporary-build consents until the two-year extension is confirmed.", source:"GOV.UK / MHCLG", sourceType:"gov", url:"https://www.gov.uk/government/consultations/permitted-development-rights-schools-assets-of-community-value-defence-and-conservation/permitted-development-rights-schools-assets-of-community-value-defence-and-conservation", topics:["raac","mmc","dfe"] },
   { id:"dfe-update-5-aug-2026", date:"2026-08-05", title:"DfE Update 5 August 2026: apprenticeship funding rules and 16–19 participation reporting overhaul", summary:"Latest fortnightly DfE bulletin is skills/FE-focused — new apprenticeship funding guidance routed through the Growth and Skills Levy, tighter 16–19 participation reporting deadlines, and a mid-August migration of the post-16 monitoring dashboard to a new platform. Limited direct capital read for CF25, but relevant to the apprenticeship and social-value commitments carried in call-off bids.", source:"GOV.UK DfE Update 5 August 2026", sourceType:"gov", url:"https://www.gov.uk/government/publications/dfe-update-5-august-2026/dfe-update-academies-5-august-2026", topics:["dfe","industry"] },
   { id:"thornhill-academy-sunderland-srp-rebuild-approval-2026-08-03", date:"2026-08-03", title:"Sunderland's Thornhill Academy SRP rebuild heads for planning decision", summary:"Sunderland City Council's planning and highways committee is due to rule on the School Rebuilding Programme-backed revamp of Thornhill Academy on 3 August, with officers recommending approval. The scheme would demolish part of the existing school and add a new three-storey teaching block, swimming pool, refurbished sports hall and upgraded outdoor facilities. A live North East SRP scheme moving through planning — a read on pipeline scope and the design/phasing standard for occupied-site secondary rebuilds CF25 teams will bid against.", source:"Sunderland Echo", sourceType:"trade", url:"https://www.sunderlandecho.com/education/decision-due-over-multi-million-pound-revamp-of-sunderland-school-8828852", topics:["dfe"] },
   { id:"kier-98m-wellfield-anglo-european-genzero-raac-2026-07-27", date:"2026-07-27", title:"Kier lands £98m double school award — Wellfield Academy (GenZero pathfinder) and RAAC-hit Anglo European", summary:"Kier — a CF25 high-value lot holder — is appointed main contractor on two schemes worth ~£98m: the £45m Wellfield Academy, Leyland, one of the DfE's five flagship GenZero ultra-low-carbon pathfinder schools (CLT frame, ground-source heat pumps, PV, natural ventilation; completion end-2028), and the £53m net-zero-in-operation replacement of RAAC-hit Anglo European School, Ingatestone (sixth-form centre closed 2023). A key competitor-capacity and design read for CF25 teams: the GenZero build will help set the low-carbon standard call-off bids are scored against, and reconfirms RAAC replacement plus net-zero delivery as the live workstream.", source:"BDC Magazine", sourceType:"trade", url:"https://bdcmagazine.com/2026/07/kier-secures-98m-school-rebuild-contracts-to-deliver-next-generation-of-sustainable-campuses/", topics:["dfe","mmc","raac","industry"] },
@@ -223,7 +224,7 @@ try{activeTopic=localStorage.getItem('cf25-topic')||'all'}catch(e){}
   const el=document.getElementById('n-'+t);
   if(el)el.textContent=n;
 });
-document.getElementById('edDate').textContent='7 Aug 2026';
+document.getElementById('edDate').textContent='10 Aug 2026';
 document.getElementById('edTally').textContent=NEWS.length+' stories tracked';
 
 /* ── helpers ── */
